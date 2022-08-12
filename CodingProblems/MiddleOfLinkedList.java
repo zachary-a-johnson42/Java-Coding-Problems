@@ -3,43 +3,33 @@ package CodingProblems;
 import java.util.ArrayList;
 import java.util.List;
 
+//https://leetcode.com/problems/middle-of-the-linked-list/
 public class MiddleOfLinkedList {
     /**
      * Definition for singly-linked list.
      * public class ListNode {
-     *     int val;
-     *     ListNode next;
-     *     ListNode() {}
-     *     ListNode(int val) { this.val = val; }
-     *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * int val;
+     * ListNode next;
+     * ListNode() {}
+     * ListNode(int val) { this.val = val; }
+     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
      * }
      */
 
     public ListNode middleNode(ListNode head) {
-        // counter
-        int LinkedListLength = 0;
-        // I have to return a node, so I'll make an ArrayList of Nodes.
-        List<ListNode> LinkedList = new ArrayList<ListNode>();
+        //Setting Double Pointers.
+        ListNode middle = head;
+        ListNode end = head;
 
-        // If there's a next, keep moving. if not, we're at the last node.
+        //Make the end move twice, and the middle move once. when the end reaches the end, the middle should be in the middle;
 
-        while(head.next != null){
-            //fill array at index
-            LinkedList.add(head);
-            //increment counter
-            LinkedListLength++;
-            //move up to the next index
-            head = head.next;
+        //While end isn't null, and the there's still something to move forward into one space.
+        while (end != null && end.next != null) {
+            //move 2
+            end = end.next.next;
+            //move 1
+            middle = middle.next;
         }
-
-        if(LinkedListLength % 2 == 0) {
-            LinkedListLength = (LinkedListLength / 2);
-        }
-
-        if (LinkedListLength % 2 == 1){
-            LinkedListLength = (LinkedListLength / 2) + 1;
-        }
-
-        return LinkedList.get(LinkedListLength);
-     }
+        return middle;
+    }
 }
