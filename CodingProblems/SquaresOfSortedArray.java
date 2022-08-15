@@ -15,7 +15,7 @@ public class SquaresOfSortedArray {
 
         //creating intStream
         Stream<Integer> returnStream = Arrays.stream(returnArray).boxed();
-        //Sorting
+        //Sorting and casting stream back to int[]
         returnArray = returnStream.mapToInt(item -> item).sorted().toArray();
 
         return returnArray;
