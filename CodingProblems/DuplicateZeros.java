@@ -6,33 +6,26 @@ import java.sql.Array;
 // Given a fixed-length integer array arr, duplicate each occurrence of zero, shifting the remaining elements to the right.
 public class DuplicateZeros {
     public void duplicateZeros(int[] arr) {
-        // how many zeros there are.
-        int counter = 0;
 
-        for (int i = 0; i < arr.length; i++) {
-            if(arr[i] == 0) {
-                counter++;
+        //TODO: REVIEW THIS ONE. I DON'T QUITE UNDERSTAND HOW ITS WORKING.
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i] == 0) {
+                int next = arr[i + 1];
+
+                int next_ = 0;
+
+                arr[i + 1] = 0;
+
+                int j = i + 1;
+
+                while (j < arr.length - 1) {
+                    next_ = arr[j + 1];
+                    arr[j + 1] = next;
+                    next = next_;
+                    j++;
+                }
+                i++;
             }
         }
-
-        int[] returnArray = new int[arr.length + counter];
-
-        for (int i = 0; i < arr.length; i++) {
-            
-            if(arr[i] != 0) {
-                returnArray[i] = arr[i];
-            }
-            
-            if(arr[i] == 0){
-                arr[i] = 0;
-                arr[i+1] = 0;
-                i = i + 1;
-            }
-        }
-        arr = returnArray;
-    }
-
-    public static void main(String[] args) {
-
     }
 }
